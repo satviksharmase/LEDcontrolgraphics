@@ -1,0 +1,51 @@
+from tkinter import *
+import tkinter.font
+from gpiozero import LED
+import RPi.GPIO
+Rpi.GPIO.setmode(RPi.GPIO.BCM)
+
+yellowled=LED(22)
+greenled=LED(27)
+orangeled=LED(17)
+
+win=Tk()
+win.title("LED Toggler")
+myFont=tkinter.font.Font(family='helvetica',size=12,weight="bold")
+
+def orangeledToggle():
+	if orangeled.is_lit:
+		orangeled.off()
+		orangeledButton["text"]="orange Turn LED on"
+
+	else:
+		orangeled.on()
+		orangeledButton["text"]="orange turn LED off"
+
+
+def greenledToggle():
+	if greenled.is_lit:
+		greenled.off()
+		greenledButton["text"]="green Turn LED on"
+
+	else:
+		greenled.on()
+		greenledButton["text"]="green turn LED off"
+
+
+def yellowledToggle():
+	if yellowled.is_lit:
+		yellowled.off()
+		yellowledButton["text"]="yellow Turn LED on"
+
+	else:
+		yellowled.on()
+		yellowledButton["text"]="yellow turn LED off"
+
+orangeledButton=Button(win,text='orange Turn LED on',font=myFont,command=orangeledToggle,bg='bisque2',height=1,width=24)
+orangeledButton.grid(row=0,column=1)
+
+greenledButton=Button(win,text='green Turn LED on',font=myFont,command=greenledToggle,bg='bisque2',height=1,width=24)
+greenledButton.grid(row=0,column=1)
+
+yellowledButton=Button(win,text='yellow Turn LED on',font=myFont,command=yellowledToggle,bg='bisque2',height=1,width=24)
+yellowledButton.grid(row=0,column=1)
